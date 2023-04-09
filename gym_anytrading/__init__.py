@@ -15,11 +15,32 @@ register(
 )
 
 register(
+    id='forex-v1',
+    entry_point='gym_anytrading.envs:ForexMultiEnv',
+    kwargs={
+        'df': deepcopy(datasets.FOREX_EURUSD_1H_ASK),
+        'window_size': 24,
+        'frame_bound': (24, len(datasets.FOREX_EURUSD_1H_ASK))
+    }
+)
+
+register(
     id='stocks-v0',
     entry_point='gym_anytrading.envs:StocksEnv',
     kwargs={
         'df': deepcopy(datasets.STOCKS_GOOGL),
         'window_size': 30,
         'frame_bound': (30, len(datasets.STOCKS_GOOGL))
+    }
+)
+
+
+register(
+    id='binary-v0',
+    entry_point='gym_anytrading.envs:BinaryEnv',
+     kwargs={
+        'df': deepcopy(datasets.FOREX_EURUSD_1H_ASK),
+        'window_size': 24,
+        'frame_bound': (24, len(datasets.FOREX_EURUSD_1H_ASK))
     }
 )
