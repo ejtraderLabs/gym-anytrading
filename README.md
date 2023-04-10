@@ -19,13 +19,13 @@ pip install gym-anytrading
 
 ### From Repository
 ```bash
-git clone https://github.com/AminHP/gym-anytrading
+git clone https://github.com/ejtraderLabs/gym-anytrading
 cd gym-anytrading
 pip install -e .
 
 ## or
 
-pip install --upgrade --no-deps --force-reinstall https://github.com/AminHP/gym-anytrading/archive/master.zip
+pip install --upgrade --no-deps --force-reinstall https://github.com/ejtraderLabs/gym-anytrading/archive/master.zip
 ```
 
 ## Environment Properties

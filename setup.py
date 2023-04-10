@@ -16,7 +16,4 @@ setup(
         'matplotlib>=3.1.1'
     ],
 
-    package_data={
-        'gym_anytrading': ['datasets/data/*']
-    }
 )
