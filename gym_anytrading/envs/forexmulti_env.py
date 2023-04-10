@@ -17,29 +17,20 @@ class ForexMultiEnv(TradingEnv):
 
 
     def _process_data(self):
-        prices = self.df.loc[:, 'price'].to_numpy()
-        ask = self.df.loc[:, 'ask'].to_numpy()
-        bid = self.df.loc[:, 'bid'].to_numpy()
-        cumdelta = self.df.loc[:, 'cumdelta'].to_numpy()
-        side = self.df.loc[:, 'side'].to_numpy()
-        volume = self.df.loc[:, 'volume'].to_numpy()
+        prices = self.df.iloc[:, 0].to_numpy()
+        features = self.df.iloc[:,1:].to_numpy()
+        
 
         prices[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
-        ask[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
-        bid[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
-        cumdelta[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
-        side[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
-        volume[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
+        features[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
+        
         
         prices = prices[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
-        ask = ask[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
-        bid = bid[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
-        cumdelta = cumdelta[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
-        side = side[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
-        volume = volume[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
+        features = features[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
+        
 
         diff = np.insert(np.diff(prices), 0, 0)
-        signal_features = np.column_stack((prices, diff, ask, bid, cumdelta,side,volume))
+        signal_features = np.column_stack((prices, features, diff))
 
         return prices, signal_features
 
