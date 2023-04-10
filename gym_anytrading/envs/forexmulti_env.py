@@ -18,19 +18,14 @@ class ForexMultiEnv(TradingEnv):
 
     def _process_data(self):
         prices = self.df.iloc[:, 0].to_numpy()
-        features = self.df.iloc[:,1:].to_numpy()
-        
-
+        features = self.df.iloc[:,0:].to_numpy()
         prices[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
         features[self.frame_bound[0] - self.window_size]  # validate index (TODO: Improve validation)
-        
-        
         prices = prices[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
         features = features[self.frame_bound[0]-self.window_size:self.frame_bound[1]]
         
-
         diff = np.insert(np.diff(prices), 0, 0)
-        signal_features = np.column_stack((prices, features, diff))
+        signal_features = np.column_stack((features, diff))
 
         return prices, signal_features
 
