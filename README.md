@@ -23,9 +23,11 @@ git clone https://github.com/ejtraderLabs/gym-anytrading
 cd gym-anytrading
 pip install -e .
 
+
+
 ## or
 
-pip install --upgrade --no-deps --force-reinstall https://github.com/ejtraderLabs/gym-anytrading/archive/master.zip
+pip install --upgrade --no-deps --force-reinstall https://github.com/ejtraderLabs/gym-anytrading/archive/main.zip
 ```
 
 ## Environment Properties
